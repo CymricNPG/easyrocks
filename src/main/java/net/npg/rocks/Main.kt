@@ -1,10 +1,11 @@
 package net.npg.rocks
 
+import net.npg.rocks.impl.RocksDBService
 import java.nio.file.Path
 
 
 fun main() {
-    val dbService = DBService()
+    val dbService = RocksDBService()
     val tableContext = TableContext<String, String>("test",
         { s -> s.toByteArray(Charsets.UTF_8) },
         { s -> s.toString(Charsets.UTF_8) },
