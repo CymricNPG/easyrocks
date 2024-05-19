@@ -16,32 +16,27 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package net.npg.rocks
+package net.npg.rocks.impl
 
 import java.nio.file.Path
 
-interface DBService {
-    fun open(dbPath: Path, tableContexts: List<TableContext<*, *>>): Database
+
+fun main() {
+    val dbService = RocksDBService()
+    val tableContextData = TableContextData<String, String>("test",
+        { s -> s.toByteArray(Charsets.UTF_8) },
+        { s -> s.toString(Charsets.UTF_8) },
+        { s -> s.toByteArray(Charsets.UTF_8) },
+        { s -> s.toString(Charsets.UTF_8) })
+
+    dbService.open(Path.of("test"), listOf(tableContextData)).use { db ->
+        val table = db.getTable(tableContextData)
+        for (i in 1..100) {
+            val key = "Hossa" + i
+            val value = "bla" + i
+            table.put(key, value)
+        }
+        table.getAll().forEach { (k, v) -> println("$k -> $v") }
+    }
+
 }
-
-interface Database : AutoCloseable {
-    fun <K, V> getTable(context: TableContext<K, V>): Table<K, V>
-}
-
-interface Table<K, V> {
-
-    fun put(key: K, value: V)
-
-    fun getAll(): Map<K, V>
-}
-
-interface TableContext<K, V> {
-    val name: String
-    val serializeKey: (K) -> ByteArray
-    val deserializeKey: (ByteArray) -> K
-    val serializeValue: (V) -> ByteArray
-    val deserializeValue: (ByteArray) -> V
-}
-
-
-

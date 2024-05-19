@@ -127,3 +127,13 @@ class RocksTable<K, V>(val context: TableContext<K, V>, val handle: ColumnFamily
         return map
     }
 }
+
+
+class TableContextData<K, V>(
+    override val name: String,
+    override val serializeKey: (K) -> ByteArray,
+    override val deserializeKey: (ByteArray) -> K,
+    override val serializeValue: (V) -> ByteArray,
+    override val deserializeValue: (ByteArray) -> V
+) : TableContext<K, V> {
+}

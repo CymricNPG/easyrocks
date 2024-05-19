@@ -10,6 +10,7 @@ repositories {
 }
 
 dependencies {
+    implementation("com.alibaba:fastjson:2.0.28")
     implementation("org.rocksdb:rocksdbjni:9.1.1")
     testImplementation(platform("org.junit:junit-bom:5.10.2"))
     testImplementation("org.junit.jupiter:junit-jupiter")
