@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.9.23"
+    kotlin("jvm") version "1.9.24"
 }
 
 group = "net.npg.rocks"
@@ -10,9 +10,13 @@ repositories {
 }
 
 dependencies {
-    implementation("org.rocksdb:rocksdbjni:8.11.3")
-    testImplementation(platform("org.junit:junit-bom:5.10.1"))
+    implementation("org.rocksdb:rocksdbjni:9.1.1")
+    testImplementation(platform("org.junit:junit-bom:5.10.2"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation("org.mockito:mockito-core:5.11.0")
+    testImplementation("org.jetbrains.kotlin:kotlin-test:1.9.24")
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5:1.9.23")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.3.1")
 }
 
 tasks.test {
