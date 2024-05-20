@@ -3,13 +3,11 @@ package net.npg.rocks.impl.net.npg.rocks.impl
 import net.npg.rocks.TableContext
 import net.npg.rocks.impl.RocksDBService
 import net.npg.rocks.impl.RocksDatabase
-import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
 import java.nio.file.Path
+import kotlin.test.*
 
 class RocksDBServiceTest {
 
@@ -19,7 +17,7 @@ class RocksDBServiceTest {
 
     private lateinit var rocksDBService: RocksDBService
 
-    @BeforeEach
+    @BeforeTest
     fun setUp() {
         rocksDBService = RocksDBService()
     }
@@ -46,6 +44,6 @@ class RocksDBServiceTest {
 
         assertNotNull(rocksDatabase)
         assertTrue(rocksDatabase is RocksDatabase)
-        assertDoesNotThrow { rocksDatabase.close() }
+        rocksDatabase.close()
     }
 }

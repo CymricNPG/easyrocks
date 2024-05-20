@@ -18,10 +18,10 @@
 
 package net.npg.rocks.impl
 
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 import java.nio.file.Path
+import kotlin.test.BeforeTest
+import kotlin.test.Test
 import kotlin.test.assertEquals
 
 
@@ -33,7 +33,7 @@ class JsonTest {
 
     private lateinit var rocksDBService: RocksDBService
 
-    @BeforeEach
+    @BeforeTest
     fun setUp() {
         rocksDBService = RocksDBService()
     }
