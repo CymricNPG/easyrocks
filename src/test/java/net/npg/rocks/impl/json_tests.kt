@@ -52,6 +52,27 @@ class JsonTest {
             assertEquals(obj, result.first())
         }
     }
+
+    @Test
+    fun testSerializationAndDeserialization() {
+        val keyClass = String::class.java
+        val valueClass = String::class.java
+        val context = JsonKeyValueContext("test", keyClass, valueClass)
+
+        val key = "hello"
+        val value = "world"
+
+        // Serialize the key and value
+        val serializedKey = context.serializeKey(key)
+        val serializedValue = context.serializeValue(value)
+
+        // Deserialize the key and value
+        val deserializedKey = context.deserializeKey(serializedKey)
+        val deserializedValue = context.deserializeValue(serializedValue)
+
+        assertEquals(key, deserializedKey)
+        assertEquals(value, deserializedValue)
+    }
 }
 
 data class TestClass(val a: Int, val b: String, val c: IntArray) {
