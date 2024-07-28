@@ -16,8 +16,10 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package net.npg.rocks.impl
+package net.npg.rocks.playground
 
+import net.npg.rocks.impl.RocksDBService
+import net.npg.rocks.impl.TableContextData
 import java.nio.file.Path
 
 

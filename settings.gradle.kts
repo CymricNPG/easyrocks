@@ -1,2 +1,2 @@
-rootProject.name = "EasyRocls"
-
+rootProject.name = "EasyRocks"
+include("playground", "db")
