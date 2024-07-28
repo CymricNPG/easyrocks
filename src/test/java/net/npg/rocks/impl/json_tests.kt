@@ -54,6 +54,21 @@ class JsonTest {
     }
 
     @Test
+    fun `delete test `() {
+        val context = StringKeyJsonValueContext("testTable", TestClass::class)
+        val contexts = listOf(context)
+
+        rocksDBService.open(tempFolder, contexts).use { db ->
+            val table = db.getTable(context)
+            val obj = TestClass(34, "FASEL", intArrayOf(2, 6, 87, 9))
+            table.put("Bla", obj)
+            table.delete("Bla")
+            val result = table.getAll().values
+            assertEquals(0, result.size)
+        }
+    }
+
+    @Test
     fun testSerializationAndDeserialization() {
         val keyClass = String::class.java
         val valueClass = String::class.java

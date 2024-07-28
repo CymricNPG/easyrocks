@@ -1,8 +1,6 @@
-package net.npg.rocks.impl.net.npg.rocks.impl
+package net.npg.rocks.impl
 
 import net.npg.rocks.TableContext
-import net.npg.rocks.impl.RocksDBService
-import net.npg.rocks.impl.RocksDatabase
 import org.junit.jupiter.api.io.TempDir
 import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock

@@ -10,9 +10,9 @@ repositories {
 }
 
 dependencies {
-    implementation("com.alibaba:fastjson:2.0.28")
-    implementation("org.rocksdb:rocksdbjni:9.1.1")
-    
+    implementation("com.alibaba:fastjson:2.0.52")
+    implementation("org.rocksdb:rocksdbjni:9.4.0")
+
     testImplementation(kotlin("test"))
     testImplementation("org.mockito:mockito-core:5.11.0")
     testImplementation("org.mockito.kotlin:mockito-kotlin:5.3.1")

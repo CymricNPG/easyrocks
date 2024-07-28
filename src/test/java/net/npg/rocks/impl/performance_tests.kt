@@ -27,7 +27,7 @@ import kotlin.test.Test
 import kotlin.test.assertContentEquals
 import kotlin.test.assertNotNull
 
-class JSONTest {
+class JSONPerformanceTest {
 
     @field:TempDir
     lateinit var tempFolder: Path

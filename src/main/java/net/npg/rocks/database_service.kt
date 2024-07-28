@@ -33,6 +33,8 @@ interface Table<K, V> {
     fun put(key: K, value: V)
 
     fun getAll(): Map<K, V>
+
+    fun delete(key: K): Boolean
 }
 
 interface TableContext<K, V> {

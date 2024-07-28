@@ -126,6 +126,11 @@ class RocksTable<K, V>(val context: TableContext<K, V>, val handle: ColumnFamily
         }
         return map
     }
+
+    override fun delete(key: K): Boolean {
+        db.delete(handle, context.serializeKey(key))
+        return true
+    }
 }
 
 
