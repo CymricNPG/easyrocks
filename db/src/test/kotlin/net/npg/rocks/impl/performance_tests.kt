@@ -19,6 +19,7 @@
 package net.npg.rocks.impl
 
 import com.alibaba.fastjson2.JSON
+import org.junit.jupiter.api.RepeatedTest
 import org.junit.jupiter.api.io.TempDir
 import java.nio.file.Path
 import kotlin.random.Random
@@ -43,10 +44,11 @@ class JSONPerformanceTest {
     @Test
     fun serializeDeserialize() {
         val aList = createTestData()
-
-        val serialized = aList.map { JSON.toJSONBytes(it) }.toList()
-        val deserialized = serialized.map { JSON.parseObject(it, A::class.javaObjectType) }
-        assertContentEquals(aList, deserialized)
+        for (i in 0..10) {
+            val serialized = aList.map { JSON.toJSONBytes(it) }.toList()
+            val deserialized = serialized.map { JSON.parseObject(it, A::class.javaObjectType) }
+            assertContentEquals(aList, deserialized)
+        }
         speedTestSerialize(aList)
     }
 
@@ -70,10 +72,10 @@ class JSONPerformanceTest {
         val deserialized = serialized.map { JSON.parseObject(it, A::class.javaObjectType) }
         val end = System.nanoTime()
         assertNotNull(deserialized)
-        println("Time: " + (end - start) / 1000.0 / 1000.0)
+        println("Time (serialize/deserialize): " + (end - start) / 1000.0 / 1000.0 + " ms")
     }
 
-    @Test
+    @RepeatedTest(2)
     fun rocks() {
         preRunRocks()
         val context = StringKeyJsonValueContext("testTable", A::class)
@@ -110,7 +112,7 @@ class JSONPerformanceTest {
     }
 }
 
-
+//@Serializable
 data class A(val a: Int, val b: String, val c: B, val d: B, val e: DoubleArray) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -137,4 +139,5 @@ data class A(val a: Int, val b: String, val c: B, val d: B, val e: DoubleArray) 
     }
 }
 
+//@Serializable
 data class B(val a: Double, val b: Double, val c: Double)

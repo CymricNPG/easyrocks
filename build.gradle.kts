@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.9.24"
+    kotlin("jvm") version "2.1.0"
 }
 
 group = "net.npg.rocks"
@@ -12,10 +12,11 @@ allprojects {
 
 subprojects {
     apply(plugin = "kotlin")
-    
+
     dependencies {
         implementation("com.alibaba:fastjson:2.0.52")
-        implementation("org.rocksdb:rocksdbjni:9.4.0")
+        implementation("org.rocksdb:rocksdbjni:9.7.3")
+        implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
 
         testImplementation(kotlin("test"))
         testImplementation("org.mockito:mockito-core:5.11.0")
